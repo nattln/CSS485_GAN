@@ -1,45 +1,73 @@
-from tkinter import *
+import tkinter as tk
 
-def addtolist():
-    global List
-
-    List = []
+def add_list():
+    global hlist
+    hlist = []
+    
     for item in varList:
         if item.get() != "":
-            List.append(item.get())
-    print(List)
+            hlist.append(item.get())
+    print(hlist)
+
+def add_plist():
+    global plist
+    plist = []
+    
+    for item in varList:
+        if item.get() != "":
+            plist.append(item.get())
+    print(plist)
+
+def add_alist():
+    global alist
+    alist = []
+    
+    for item in varList:
+        if item.get() != "":
+            alist.append(item.get())
+    print(alist)
+
+def feature_command():
+    return
 
 # --- main ---
-List = []
-varList = []
 
-root = Tk()
-root.title('Face Generation')
-root.geometry("700x500")
+master = tk.Tk()
+master.title('Face Generation')
+master.geometry("800x500")
 
-window = Label(root, text='Choose Your Feature', font="50")
-window.pack()
 
-var1 = StringVar()
-var2 = StringVar()
-var3 = StringVar()
-var4 = StringVar()
+tk.Label(master,text="Choose your feature:").grid(row=0)
+tk.Label(master,text="1) Hair :").grid(row=3)
+tk.Label(master,text="2) Pose :").grid(row=6)
+tk.Label(master,text="3) Age :").grid(row=9)
 
-f1 = Checkbutton(root, text="1", variable=var1, onvalue="f1", offvalue="0", height=2, width=10)
-f2 = Checkbutton(root, text="2", variable=var2, onvalue="f2", offvalue="0", height=2, width=10)
-f3 = Checkbutton(root, text="3", variable=var3, onvalue="f3", offvalue="0", height=2, width=10)
-f4 = Checkbutton(root, text="4", variable=var4, onvalue="f4", offvalue="0", height=2, width=10)
-f1.pack()
-f2.pack()
-f3.pack()
-f4.pack()
+h1 = tk.Entry(master, width=5)
+h2 = tk.Entry(master, width=5)
+h3 = tk.Entry(master, width=5)
+p1 = tk.Entry(master, width=5)
+p2 = tk.Entry(master, width=5)
+p3 = tk.Entry(master, width=5)
+a1 = tk.Entry(master, width=5)
 
-varList.append(var1)
-varList.append(var2)
-varList.append(var3)
-varList.append(var4)
+tk.Label(master,text="R").grid(row=2,column=1)
+tk.Label(master,text="G").grid(row=2,column=2)
+tk.Label(master,text="B").grid(row=2,column=3)
+h1.grid(row=3, column=1)
+h2.grid(row=3, column=2)
+h3.grid(row=3, column=3)
 
-b1 = Button(root, text="Confirm", command=addtolist)
-b1.pack()
+tk.Label(master,text="Yaw").grid(row=5,column=1)
+tk.Label(master,text="Pitch").grid(row=5,column=2)
+tk.Label(master,text="Roll").grid(row=5,column=3)
+p1.grid(row=6, column=1)
+p2.grid(row=6, column=2)
+p3.grid(row=6, column=3)
 
-mainloop()
+tk.Label(master,text="Age").grid(row=8,column=1)
+a1.grid(row=9, column=1)
+
+button1 = tk.Button(master, text='Confirm', command=feature_command()).grid(column=2,pady=30)#, sticky=tk.W, pady=4)
+
+
+tk.mainloop()
